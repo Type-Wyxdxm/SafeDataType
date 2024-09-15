@@ -1,6 +1,10 @@
-// I'm so lazy to type English Notes. Understand it by yourself.
-// By Type_Wyxdxm
-// Si64_ct1.1: add a-b(a>=b>=0), -a into si64 
+// si64_classtest_1.2 : a test of the new brench "Type-Wyxdxm_Version"
+// some easy functions such as += -= *= = and * for negative and si64.Out("Type",if_endl);
+// 懒得把英文注释写下去了. 把+=这种大致直接copy四则的搞上去了,再把整数乘法搞定.
+// 新东西不多, 主要是测试新分支.
+// 哦, 顺便搞了个输出的整合版.
+// 没好好测试过, 有bug再说.
+
 #include <iostream>
 #include <bitset>
 using namespace std;
@@ -18,6 +22,19 @@ public:
 	void operator=(safe_int64 sll){
 		val = sll.val;
 		flowed = sll.flowed;
+		return;
+	}
+	void operator+=(safe_int64 sll){
+		*this = *this + sll;
+		return;
+	}
+	void operator-=(safe_int64 sll){
+		*this = *this - sll;
+		return;
+	}
+	void operator*=(safe_int64 sll){
+		*this = *this * sll;
+		return;
 	}
 	
 	// 四则 
@@ -53,6 +70,31 @@ public:
 	} 
 	safe_int64 operator*(safe_int64 sll){
 		safe_int64 ans;
+		bool s1=val[63],s2=sll.val[63];
+		if(s1&&s2){
+			ans = (-(*this))*(-sll);
+			return ans;
+		}
+		if(s1){
+			ans = (-(*this))*sll;
+			if(ans.flowed){
+				ans.val=0;
+				ans.val[63]=1;
+			}else{
+				ans = -ans;
+			}
+			return ans;
+		}
+		if(s2){
+			ans = (*this)*(-sll);
+			if(ans.flowed){
+				ans.val=0;
+				ans.val[63]=1;
+			}else{
+				ans = -ans;
+			}
+			return ans;
+		}
 		for(int i=0;i<63;i++){
 			safe_int64 t;
 			if(sll.val[i]){
@@ -90,7 +132,7 @@ public:
 			}
 			ans = ans+ONE;
 			ans.val[63]=1;
-			if(is_zero) return *this; // 判0
+			if(is_zero) return *this;
 		}
 		return ans;
 	}
@@ -98,6 +140,19 @@ public:
 	// 输入输出 
 	void in(){
 		scanf("%lld",&val);
+		return;
+	}
+	void out(string type="d",bool mode=0){
+		if(type=="d"){
+			out_d(mode);
+		}
+		if(type=="b"){
+			out_b(mode);
+		}
+		if(type=="a"){
+			out_d(1);
+			out_b(mode);
+		}
 		return;
 	}
 	void out_d(bool enter=0){
@@ -124,9 +179,9 @@ private:
 safe_int64 a,b,c;
 int main(){
 	a.in();
-	b = -a;
-	a.out_d(1);
-	a.out_b(1); 
-	b.out_d(1);
-	b.out_b(1); 
+	b.in();
+	c = a*b;
+	a.out("a",1);
+	b.out("a",1);
+	c.out("a",1);
 }

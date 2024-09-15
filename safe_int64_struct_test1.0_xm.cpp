@@ -1,6 +1,6 @@
 // NOT a header file, it's only a test!
 // Don't mind my dogshit English
-// I tried to realize safe_int64 with struct, but there are still many problems.
+// I tried to realize safe_int64 with struct, but there are still many problems. 
 #include <iostream>
 using namespace std;
 

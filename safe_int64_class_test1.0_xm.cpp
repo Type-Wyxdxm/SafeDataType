@@ -2,7 +2,7 @@
 // I typed many tips in this programs before, but for some problems, I can't find them!
 // It's a big update of Si64. With technology, we find new ways to realize get and out si64 in class.
 // So, we changed it into Class!
-// By the way, we finished operator*(a*b,a>=0,b>=0) in si64!
+// By the way, we finished operator*(a*b,a>=0,b>=0) in si64! 
 #include <iostream>
 #include <bitset>
 using namespace std;

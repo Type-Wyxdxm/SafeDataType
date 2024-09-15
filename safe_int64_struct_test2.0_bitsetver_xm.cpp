@@ -1,5 +1,5 @@
 // The same, don't mind my dogshit English
-// By the way, the file "safe_int64_struct_test1.0.cpp" is also made by me! After finished that file, I'll type "_xm" to show the file is made by me.
+// By the way, the file "safe_int64_struct_test1.0.cpp" is also made by me! After finished that file, I'll type "_xm" to show the file is made by me. 
 #include <iostream>
 #include <bitset>
 using namespace std;
